@@ -9,7 +9,9 @@ export function loginUser(id){
 }
 
 export function logoutUser(id){
-  type: LOGOUT_USER,
-  id
+  return {
+    type: LOGOUT_USER,
+    id
+  }
 }
 

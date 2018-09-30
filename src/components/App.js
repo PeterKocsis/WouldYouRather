@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import LoadingBar from 'react-redux-loading'
+import { handleReceiveQuestions } from './../actions/questions';
+import {handleReceiveUsers} from './../actions/users'
+import Login from './Login';
 
 class App extends Component {
+  componentDidMount(){
+    this.props.dispatch(handleReceiveQuestions())
+    this.props.dispatch(handleReceiveUsers())
+  }
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className='container'>
+          <Login/>
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps ({ authedUser }) {
+  return {
+    loading: authedUser === null
+  }
+}
+
+
+export default connect(mapStateToProps)(App);
