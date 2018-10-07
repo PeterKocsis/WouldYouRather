@@ -17,7 +17,7 @@ export function handleSaveQuestion(question){
     return _saveQuestion(question)
       .then((formattedQuestion)=>{
         dispatch(addQuestion(formattedQuestion))
-      })
+      });
   }
 }
 
@@ -37,7 +37,7 @@ export function handleReceiveQuestions(){
   }
 }
 
-function setAnswer(id, authedUser, option){
+function setAnswer(authedUser, id, option){
   return{
     type: SET_ANSWER,
     id,
@@ -46,11 +46,15 @@ function setAnswer(id, authedUser, option){
   }
 }
 
-export function handleSetAnswer(id, authedUser, option){
+export function handleSetAnswer(authedUser, id, option){
   return (dispatch)=>{
-    return _saveQuestionAnswer(authedUser, id, option)
+    return _saveQuestionAnswer({
+      authedUser,
+      qid: id,
+      answer: option
+    })
       .then(()=>{
-        dispatch(setAnswer(id, authedUser, option));
-      })
+        dispatch(setAnswer(authedUser, id, option));
+      });
   }
 }

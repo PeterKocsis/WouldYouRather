@@ -12,8 +12,8 @@ export default function questions(state={}, action){
         [action.id] : {
           ...state[action.id],
           [action.option]:{
-            text : state[action.id][action.option].text,
-            vote : state[action.id][action.option].vote.push(action.authedUser)
+            ...state[action.id][action.option],
+            votes : state[action.id][action.option].votes.concat([action.authedUser])
           }
         }
       }
