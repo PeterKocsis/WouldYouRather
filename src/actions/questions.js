@@ -3,6 +3,7 @@ import { _getQuestions, _saveQuestion, _saveQuestionAnswer } from "../utils/_DAT
 export const ADD_QUESTION='ADD_QUESTION';
 export const RECEIVE_QUESTIONS='RECEIVE_QUESTIONS';
 export const SET_ANSWER='SET_ANSWER';
+export const SET_VIEWMODE='SET_VIEWMODE';
 
 function addQuestion(question){
   return{
@@ -19,8 +20,6 @@ export function handleSaveQuestion(question){
       })
   }
 }
-
-
 
 function receiveQuestions(questions){
   return{
