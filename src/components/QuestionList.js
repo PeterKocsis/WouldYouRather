@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import Question from './Question';
 import { handleSetViewMode } from '../actions/viewMode';
+import Navigation from './Navigation';
 
 class QuestionList extends Component{
   constructor(props){
@@ -47,17 +48,20 @@ class QuestionList extends Component{
 
   render(){
     return(
-      <div>
-        <input type='checkbox' value={this.state.questionAnswered} onChange={(event)=>this.selectQuestions(event)}/>
-        <h4>Show All Question</h4>
-        <br/>
-        <ul>
-          {this.state.filteredQuestions.map(id=>(
-            <li key={id}>
-              <Question id={id}/>
-            </li>
-          ))}
-        </ul>
+      <div className="container">
+        <Navigation></Navigation>
+        <div className="questions">
+          <input type='checkbox' value={this.state.questionAnswered} onChange={(event)=>this.selectQuestions(event)}/>
+          <h4>Show All Question</h4>
+          <br/>
+          <ul>
+            {this.state.filteredQuestions.map(id=>(
+              <li key={id}>
+                <Question id={id}/>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     )
   }

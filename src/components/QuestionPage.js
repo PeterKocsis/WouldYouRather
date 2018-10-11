@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Question from './Question';
+import Navigation from './Navigation';
 
 class QuestionPage extends Component {
   render(){
     const {id}= this.props;
     return(
-      <Question id={id}/>
+      <div className="container">
+        <Navigation></Navigation>
+        <div className="questions">
+          <Question id={id}/>
+        </div>
+      </div>
     )
   }
 }
