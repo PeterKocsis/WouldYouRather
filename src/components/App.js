@@ -8,6 +8,7 @@ import QuestionList from './QuestionList';
 import {handleSetViewMode} from './../actions/viewMode';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import QuestionPage from './QuestionPage';
+import CreateQuestion from './CreateQuestion';
 
 class App extends Component {
   componentDidMount(){
@@ -29,6 +30,7 @@ class App extends Component {
             )}>
             </Route>
             <Route path="/questions/:id" component={QuestionPage}/>
+            <Route path="/add" component={CreateQuestion}/>
           </div>
         </div>
       </Router>
