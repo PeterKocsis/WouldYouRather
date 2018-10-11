@@ -2,6 +2,7 @@ import { _getUsers } from "../utils/_DATA";
 
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const ADD_ANSWER = 'ADD_ANSWER';
+export const ADD_QUESTION_TO_USER = 'ADD_QUESTION_TO_USER';
 
 function receiveUsers(users){
   return{
@@ -25,6 +26,14 @@ export function handleAddAnswer(userId, quiestionId, answer){
     userId,
     quiestionId,
     answer,
+  }
+}
+
+export function handleAddQuestionToUser(userId, questionId) {
+  return {
+    type: ADD_QUESTION_TO_USER,
+    userId,
+    questionId,
   }
 }
 
