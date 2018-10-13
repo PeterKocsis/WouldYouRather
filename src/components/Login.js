@@ -33,7 +33,7 @@ class Login extends React.Component {
           label: item.name,
         };
       });
-    const imgSource = selectedUser === null ? "https://fillmurray.com/200/200" : userData.filter(item=>item.id===selectedUser.value)[0].avatar;
+    const imgSource = selectedUser === null ?"https://avatarfiles.alphacoders.com/125/125043.jpg" : userData.filter(item=>item.id===selectedUser.value)[0].avatar;
     return (
       <div className='container'>
         <Card className="question">
