@@ -1,8 +1,13 @@
 .avatar {
   height: 25px;
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 2px;
   margin: 0;
+}
+
+.loginAvatar{
+  margin: auto;
+  border-radius: 20px;
 }
 
 .question {
@@ -15,13 +20,6 @@
   border-bottom: 1px solid #dee2e6;
   border-radius: 2px;
   padding: 15px;
-}
-
-.questionsTabs {
-  border-left: 1px solid #dee2e6;
-  border-right: 1px solid #dee2e6;
-  border-top: 1px solid #dee2e6;
-  padding: 5px;
 }
 
 .questions {
@@ -47,6 +45,7 @@ span {
 
 .navigation {
   margin: 15px;
+  margin-bottom: 50px;
   width: 530px;
   height: 37px;
 }

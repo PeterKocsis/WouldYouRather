@@ -1,74 +1,77 @@
 import  React from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from './../actions/authedUser';
-import { IconContext } from 'react-icons';
-import {FaUser} from 'react-icons/fa'
+import {Button, Card, CardBody, CardHeader, CardTitle, CardSubtitle, CardText, CardImg} from 'reactstrap';
+import Select from 'react-select';
 
 class Login extends React.Component {
 
   state={
-    selectedUser : 'None'
+    selectedUser : null
   }
 
-  handleChange=(event)=>{
-    event.persist();
-    const userId = event.target.value;
+  handleChange=(selectedOption)=>{
+    console.log(selectedOption);
     this.setState(()=>({
-      selectedUser : userId
-    }))
+      selectedUser : selectedOption
+    }));
   }
 
   handleSubmit =()=>{
     const {selectedUser} = this.state;
     const {dispatch} = this.props;
-    dispatch(loginUser(selectedUser));
+    dispatch(loginUser(selectedUser.value));
   }
 
   render(){
     const {userData} = this.props;
-    const user = this.state.selectedUser ? userData.filter(item=>item.id===this.state.selectedUser)[0] : {};
+    const {selectedUser} = this.state;
+    const options = userData.map(item =>
+      {
+        return {
+          value: item.id,
+          label: item.name,
+        };
+      });
+    const imgSource = selectedUser === null ? "https://fillmurray.com/200/200" : userData.filter(item=>item.id===selectedUser.value)[0].avatar;
     return (
-      <div className='login'>
-        <h3>Sign In</h3>
-        <div>
-          {this.state.selectedUser==='None'
-            ? <IconContext.Provider value={{color:'black', className:'avatar'}}>
-                <FaUser/>
-              </IconContext.Provider>
-            :
-              <img
-                src={user.avatar}
-                className='avatar'
-            />
-          }
-        </div>
-          <select value={this.state.selectedUser} onChange={(event)=>this.handleChange(event)}>
-            {userData.map(item=>(
-              <option key={item.id} value={item.id}>{item.name}</option>
-            ))}
-          </select>
-          <button onClick={this.handleSubmit}>Sign In</button>
+      <div className='container'>
+        <Card className="question">
+          <CardHeader style={{textAlign:"center"}}>
+            <CardTitle tag="h4">Welcome to the Would You Rather App!</CardTitle>
+            <CardSubtitle tag="h5">Please sign in to continue</CardSubtitle>
+          </CardHeader>
+          <CardBody style={{margin:"auto"}}>
+            <img
+              className="loginAvatar"
+              width="200px"
+              src={imgSource}
+              alt="User Avatar"
+              style={{ borderRadius:"20px"}}>
+            </img>
+          </CardBody>
+          <Select
+            placeholder="Select User"
+            onChange={this.handleChange}
+            value={this.state.selectedUser}
+            options={options}/>
+          <Button size="lg" onClick={this.handleSubmit}>Sign In</Button>
+        </Card>
       </div>
     )
   }
 }
 
 function mapStateToProps({users}){
-  let defaultUser = [];
-  defaultUser.push({
-    id: 'None',
-    name: 'None',
-    avatar: ''
-  });
   let existingUsers = Object.keys(users).map(item=>{
     return {
-      id : users[item].id,
-      name : users[item].name,
-      avatar : users[item].avatarURL
+        id : users[item].id,
+        name : users[item].name,
+        avatar : users[item].avatarURL
     }});
 
   return {
-    userData: defaultUser.concat(existingUsers)
+    userData: existingUsers
   }
 }
 
