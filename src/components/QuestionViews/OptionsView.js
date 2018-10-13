@@ -30,7 +30,7 @@ class OptionsView extends Component {
     const {question} = this.props;
     return(
       <div>
-        <h3>Would You Rather?</h3>
+        <h4>Would You Rather?</h4>
         <form onSubmit={this.setAnswer}>
           <p>
             <input type='radio' name='question' value='optionOne' onChange={(e)=>this.onSelectionChange(e.target.value)}/> {question.optionOne.text}

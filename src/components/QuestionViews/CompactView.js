@@ -20,7 +20,7 @@ class CompactView extends Component {
   render(){
     return (
       <div>
-        <h3>Would You Rather?</h3>
+        <h4>Would You Rather?</h4>
         <p>...{this.props.question.optionOne.text}...</p>
         <button onClick={this.handleViewPoll}>View Poll</button>
       </div>

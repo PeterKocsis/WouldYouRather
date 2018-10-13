@@ -54,13 +54,11 @@ class QuestionList extends Component{
           <input type='checkbox' value={this.state.questionAnswered} onChange={(event)=>this.selectQuestions(event)}/>
           <h4>Show All Question</h4>
           <br/>
-          <ul>
             {this.state.filteredQuestions.map(id=>(
-              <li key={id}>
+              <div key={id}>
                 <Question id={id}/>
-              </li>
+              </div>
             ))}
-          </ul>
         </div>
       </div>
     )

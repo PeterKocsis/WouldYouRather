@@ -21,8 +21,6 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <header className="App-header">
-          </header>
           <div className='container'>
             <Route exact path="/" render={()=>(
               this.props.loading

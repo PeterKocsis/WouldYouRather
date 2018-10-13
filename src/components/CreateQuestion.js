@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {Form, Card, CardHeader, CardBody, CardTitle, FormGroup, Label,Input, Button} from 'reactstrap';
+import {Form, Card, CardHeader, CardBody, CardTitle, FormGroup, Label,Input, Button, Row, Col} from 'reactstrap';
 import Navigation from './Navigation';
 import { handleSaveQuestion } from './../actions/questions';
 import { withRouter } from 'react-router-dom';
-import { handleAddQuestionToUser } from '../actions/users';
 import { handleReceiveUsers } from './../actions/users';
 
 class CreateQuestion extends Component {
@@ -46,28 +45,35 @@ class CreateQuestion extends Component {
   }
 
   render(){
-    const {username} = this.props;
+    const {userAvatar} = this.props;
     return (
       <div className="container">
         <div>
           <Navigation></Navigation>
         </div>
-        <div className="questions">
+        <div className="question">
         <Card>
-          <CardHeader>What is your question {username}?</CardHeader>
+          <CardHeader tag="h3">Make your own poll.</CardHeader>
           <CardBody>
-            <CardTitle>Would You Rather?</CardTitle>
-            <Form onSubmit={this.handleSubmit}>
-              <FormGroup>
-                <Label for="optionOneText">First Option</Label>
-                <Input type="text" name="text" id="optionOneText" value={this.state.optionOne} onChange={(e)=>this.handleOptionChange(e,1)}></Input>
-              </FormGroup>
-              <FormGroup>
-                <Label for="optionTwoText">First Option</Label>
-                <Input type="text" name="text" id="optionTwoText" value={this.state.optionTwo} onChange={(e)=>this.handleOptionChange(e,2)}></Input>
-              </FormGroup>
-              <Button type="submit">Submit</Button>
-            </Form>
+            <Row>
+              <Col sm="3">
+                <img className="authorAvatar" src={userAvatar}/>
+              </Col>
+              <Col sm="9">
+                <CardTitle tag="h4">Would You Rather?</CardTitle>
+                <Form onSubmit={this.handleSubmit}>
+                  <FormGroup>
+                    <Label for="optionOneText">First Option</Label>
+                    <Input type="text" name="text" id="optionOneText" value={this.state.optionOne} onChange={(e)=>this.handleOptionChange(e,1)}></Input>
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="optionTwoText">Second Option</Label>
+                    <Input type="text" name="text" id="optionTwoText" value={this.state.optionTwo} onChange={(e)=>this.handleOptionChange(e,2)}></Input>
+                  </FormGroup>
+                <Button type="submit">Submit</Button>
+                </Form>
+              </Col>
+            </Row>
           </CardBody>
         </Card>
         </div>
