@@ -26,6 +26,19 @@
   width: 530px;
 }
 
+.questionContent {
+  border: 1px solid #dee2e6;
+  height: 100%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.questionStatistics {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
 .container {
   width: 800px;
   margin: auto;
@@ -48,6 +61,16 @@ span {
   margin-bottom: 50px;
   width: 530px;
   height: 37px;
+}
+
+.text-center {
+  text-align: center;
+  font-weight: bold;
+}
+
+.progress{
+  margin: 0px;
+  height: 20px;
 }
 
 .right {

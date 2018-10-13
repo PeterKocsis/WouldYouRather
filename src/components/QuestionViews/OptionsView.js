@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { handleSetViewMode } from '../../actions/viewMode';
 import { handleSetAnswer } from './../../actions/questions';
 import { handleAddAnswer } from '../../actions/users';
+import { Button} from 'reactstrap';
 
 class OptionsView extends Component {
 
@@ -29,16 +30,24 @@ class OptionsView extends Component {
   render(){
     const {question} = this.props;
     return(
-      <div>
-        <h4>Would You Rather?</h4>
+      <div className="questionContent">
         <form onSubmit={this.setAnswer}>
-          <p>
-            <input type='radio' name='question' value='optionOne' onChange={(e)=>this.onSelectionChange(e.target.value)}/> {question.optionOne.text}
+        <legend>Would You Rather?</legend>
+          <p><input
+            type='radio'
+            name='question'
+            value='optionOne'
+            onChange={(e)=>this.onSelectionChange(e.target.value)}/>
+              {question.optionOne.text}
           </p>
-          <p>
-            <input type='radio' name='question' value='optionTwo'onChange={(e)=>this.onSelectionChange(e.target.value)}/> {question.optionTwo.text}
+          <p><input
+            type='radio'
+            name='question'
+            value='optionTwo'
+            onChange={(e)=>this.onSelectionChange(e.target.value)}/>
+              {question.optionTwo.text}
           </p>
-          <button type='submit'>Submit</button>
+          <Button type='submit'>Submit</Button>
         </form>
       </div>
     )

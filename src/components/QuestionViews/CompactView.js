@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import { handleSetViewMode } from '../../actions/viewMode';
+import {Button} from 'reactstrap';
 
 class CompactView extends Component {
 
@@ -19,10 +20,10 @@ class CompactView extends Component {
 
   render(){
     return (
-      <div>
-        <h4>Would You Rather?</h4>
+      <div className="questionContent">
+        <legend>Would You Rather?</legend>
         <p>...{this.props.question.optionOne.text}...</p>
-        <button onClick={this.handleViewPoll}>View Poll</button>
+        <Button onClick={this.handleViewPoll}>View Poll</Button>
       </div>
     )
   }

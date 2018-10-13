@@ -25,7 +25,7 @@ class Question extends Component{
                     ? (<CompactView question={question}/>)
                     : viewMode.viewMode==='options'
                       ? (<OptionsView question={question}/>)
-                      : (<StatisticsView qustion={question}/>)}
+                      : (<StatisticsView question={question}/>)}
                 </Col>
               </Row>
             </CardBody>
