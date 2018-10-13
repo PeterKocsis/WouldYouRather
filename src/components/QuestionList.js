@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import Question from './Question';
 import { handleSetViewMode } from '../actions/viewMode';
-import Navigation from './Navigation';
 import { TabContent, TabPane, Nav, NavItem, NavLink} from 'reactstrap';
+import { withRouter } from 'react-router-dom';
 
 class QuestionList extends Component{
 
@@ -52,7 +52,6 @@ class QuestionList extends Component{
   render(){
     return(
       <div className="container">
-        <Navigation></Navigation>
         <div className="questions">
           <Nav tabs className="questionsTabs">
             <NavItem>
@@ -94,7 +93,8 @@ class QuestionList extends Component{
   }
 }
 
-function mapStateToProps({authedUser, users, questions}){
+function mapStateToProps({authedUser, users, questions}, props){
+  if(authedUser === null) props.history.push("/");
   return{
     authedUser,
     users,
@@ -102,4 +102,4 @@ function mapStateToProps({authedUser, users, questions}){
   }
 }
 
-export default connect(mapStateToProps)(QuestionList)
+export default withRouter(connect(mapStateToProps)(QuestionList));

@@ -10,6 +10,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import QuestionPage from './QuestionPage';
 import CreateQuestion from './CreateQuestion';
 import LeaderBoard from './LeaderBoard';
+import Navigation from './Navigation';
 
 class App extends Component {
   componentDidMount(){
@@ -22,6 +23,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className='container'>
+            <Navigation></Navigation>
             <Route exact path="/" render={()=>(
               this.props.loading
                 ? (<Login/>)

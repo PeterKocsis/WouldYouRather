@@ -8,7 +8,6 @@ class QuestionPage extends Component {
     const {id}= this.props;
     return(
       <div className="container">
-        <Navigation></Navigation>
         <div className="questions">
           <Question id={id}/>
         </div>

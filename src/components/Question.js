@@ -3,19 +3,18 @@ import { connect } from 'react-redux';
 import OptionsView from './QuestionViews/OptionsView';
 import StatisticsView from './QuestionViews/StatisticsView';
 import CompactView from './QuestionViews/CompactView';
-import {Redirect} from 'react-router-dom';
-import {Col, Card, CardBody, CardTitle, CardText, CardImg, CardHeader, Row} from 'reactstrap';
+import { Redirect, withRouter } from 'react-router-dom';
+import {Col, Card, CardBody, CardHeader, Row} from 'reactstrap';
 
 class Question extends Component{
   render(){
-    const {question, authorAvatar, authorName, viewMode, authedUser} = this.props;
-    const titleText = viewMode.viewMode === "statistics" ? `Asked by ${authorName}` : `${authorName} asks:`;
+    const {question, authorAvatar, authorName, viewMode, loggedIn} = this.props;
     return(
       <div>
-        {authedUser
+        {loggedIn
         ? (
           <Card className='question'>
-            <CardHeader tag = "h3">{titleText}</CardHeader>
+            <CardHeader tag = "h3">{viewMode.viewMode === "statistics" ? `Asked by ${authorName}` : `${authorName} asks:`}</CardHeader>
             <CardBody>
               <Row>
                 <Col sm="3">
@@ -38,7 +37,13 @@ class Question extends Component{
 }
 
 function mapStateToProps({users, questions, viewMode, authedUser}, {id}){
-  if(!authedUser) return {};
+  const loggedIn = authedUser===null ? false : true;
+  if(!loggedIn) {
+    return {
+      loggedIn,
+      authorName: '',
+    };
+  }
   const question = questions[id];
   const authorAvatar = users[question.author].avatarURL;
   const authorName = users[question.author].name;
@@ -48,7 +53,8 @@ function mapStateToProps({users, questions, viewMode, authedUser}, {id}){
     authorName,
     viewMode,
     authedUser,
-  }
+    loggedIn
+  };
 }
 
-export default connect(mapStateToProps)(Question);
+export default withRouter(connect(mapStateToProps)(Question));
