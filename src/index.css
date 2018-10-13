@@ -3,8 +3,19 @@
 }
 
 .question {
-  margin: 15px;
   width: 500px;
+}
+
+.questionsContent {
+  border-left: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+  border-radius: 2px;
+  padding: 15px;
+}
+
+.questions {
+  width: 530px;
 }
 
 .authorAvatar {
