@@ -1,5 +1,8 @@
 .avatar {
   height: 25px;
+  border-radius: 15px;
+  padding: 2px;
+  margin: 0;
 }
 
 .question {
@@ -14,8 +17,26 @@
   padding: 15px;
 }
 
+.questionsTabs {
+  border-left: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+  border-top: 1px solid #dee2e6;
+  padding: 5px;
+}
+
 .questions {
   width: 530px;
+}
+
+.container {
+  width: 800px;
+  margin: auto;
+}
+
+span {
+  font-size: 15px;
+  vertical-align: middle;
+  font-weight: bold;
 }
 
 .authorAvatar {
@@ -26,4 +47,10 @@
 
 .navigation {
   margin: 15px;
+  width: 530px;
+  height: 37px;
+}
+
+.right {
+  margin-left: auto;
 }

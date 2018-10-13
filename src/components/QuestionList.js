@@ -59,7 +59,7 @@ class QuestionList extends Component{
                 className ={this.state.activeTab==="unanswered" ? "active" : ""}
                 onClick={()=>this.onToggle("unanswered")}
               >
-                Unanswered Questions
+                <h3>Unanswered Questions</h3>
               </NavLink>
             </NavItem>
             <NavItem>
@@ -67,7 +67,7 @@ class QuestionList extends Component{
                 className = {this.state.activeTab==="answered" ? "active" : ""}
                 onClick={()=>this.onToggle("answered")}
               >
-                Answered Questions
+                <h3>Answered Questions</h3>
               </NavLink>
             </NavItem>
           </Nav>

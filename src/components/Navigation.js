@@ -2,10 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { logoutUser } from '../actions/authedUser';
-import { Label, ButtonGroup, Button, ButtonToolbar } from 'reactstrap'
-import authedUser from './../reducers/authedUser';
+import { ButtonGroup, Button, ButtonToolbar, Badge } from 'reactstrap'
 
 class Navigation extends Component {
+
+  constructor(props) {
+    super(props);
+    // this.state = {
+    //   activeButton: "Home"
+    // }
+  }
 
   onLogout = () => {
     const { dispatch } = this.props;
@@ -13,29 +19,63 @@ class Navigation extends Component {
   }
 
   onNavigate = (path) => {
+    // this.setState({
+    //   activeButton: this.onNavigationChange(path)
+    // });
     this.props.history.push(path);
+  }
+
+  onNavigationChange = (nav) => {
+    switch (nav) {
+      case "/":
+        return "Home";
+      case "/add":
+        return "CreateQuestion";
+      case "/leaderboard":
+        return "Leaderboard";
+      default:
+        return "Home";
+    }
   }
 
   render() {
     const { users, loggedIn, authedUser } = this.props;
     return (
       <div className="navigation">
-        <div className="toTheLeft">
-          <ButtonToolbar>
-            <ButtonGroup>
-              <Button size="lg" onClick={() => { this.onNavigate("/") }}>Home</Button>
-              <Button size="lg" onClick={() => { this.onNavigate("/add") }}>New Question</Button>
-              <Button size="lg" onClick={() => { this.onNavigate("/leaderboard") }}>Leaderboard</Button>
-            </ButtonGroup>
+          <ButtonToolbar className="toolbar">
+              <ButtonGroup>
+                <Button
+                  size="lg"
+                  //className={this.state.activeButton === "Home" ? "active" : ""}
+                  onClick={() => { this.onNavigate("/") }}>
+                  Home
+                </Button>
+                <Button
+                  size="lg"
+                  //className={this.state.activeButton === "CreateQuestion" ? "active" : ""}
+                  onClick={() => { this.onNavigate("/add") }}>
+                  New Question
+                </Button>
+                <Button
+                  size="lg"
+                  //className={this.state.activeButton === "Leaderboard" ? "active" : ""}
+                  onClick={() => { this.onNavigate("/leaderboard") }}>
+                  Leaderboard
+                </Button>
+              </ButtonGroup>
             {loggedIn &&
-              (<ButtonGroup>
-                <img className='avatar' src={users[authedUser].avatarURL} alt="Avatar" />
-                <Label className='username'>{users[authedUser].username}</Label>
-                <Button size="lg" onClick={this.onLogout}>Logout</Button>
+              (<ButtonGroup style={{marginLeft:"auto"}}>
+                  <Button size="lg" outline color="secondary">
+                    <img
+                      className='avatar'
+                      src={users[authedUser].avatarURL}
+                      alt="Avatar" />
+                      <span>{users[authedUser].name}</span>
+                  </Button>
+                  <Button size="lg" onClick={this.onLogout}>Logout</Button>
               </ButtonGroup>)
             }
           </ButtonToolbar>
-        </div>
       </div>
     )
   }
