@@ -10,11 +10,11 @@ What you have to do to start developing:
 Once you started the development server the main page will be visible in your browser or you can reach it in the [localhost:3000](localhost:3000) address by default.
 
 * You can select a user to login from a predefined list. After login you will find yourself on the main page.
-![MainPage](docs/QuestionList.png)
+![MainPage](docs/QuestionList.PNG)
 * You can answer to any unanswered question and see the statistics of that question
-![QuestionStat](docs/QuestionStat.png)
+![QuestionStat](docs/QuestionStat.PNG)
 * You can also check your scores agains other users on the leaderboard
-![Leaderboard](docs/Leaderboard.png)
+![Leaderboard](docs/Leaderboard.PNG)
 ## Important
 The backend database is only live on the memory, so your changes will disapear if you reload the page.
 ## License
