@@ -1,7 +1,7 @@
-import {RECEIVE_QUESTIONS, SET_ANSWER, ADD_QUESTION} from './../actions/questions'
+import { RECEIVE_QUESTIONS, SET_ANSWER, ADD_QUESTION } from './../actions/questions'
 
-export default function questions(state={}, action){
-  switch(action.type){
+export default function questions(state = {}, action) {
+  switch (action.type) {
     case RECEIVE_QUESTIONS:
       return {
         ...action.questions
@@ -9,18 +9,18 @@ export default function questions(state={}, action){
     case SET_ANSWER:
       return {
         ...state,
-        [action.id] : {
+        [action.id]: {
           ...state[action.id],
-          [action.option]:{
+          [action.option]: {
             ...state[action.id][action.option],
-            votes : state[action.id][action.option].votes.concat([action.authedUser])
+            votes: state[action.id][action.option].votes.concat([action.authedUser])
           }
         }
       }
     case ADD_QUESTION:
       return {
         ...state,
-        [action.question.id] : action.question,
+        [action.question.id]: action.question,
       }
     default:
       return state

@@ -1,31 +1,31 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import Question from './Question';
 import { setViewMode } from '../actions/viewMode';
-import { TabContent, TabPane, Nav, NavItem, NavLink} from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 
-class QuestionList extends Component{
+class QuestionList extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       activeTab: "unanswered",
-      filteredQuestions : this.filterQuestions("unanswered")
+      filteredQuestions: this.filterQuestions("unanswered")
     }
     this.props.dispatch(setViewMode('compact'));
   }
 
-  onToggle=(tab)=>{
-    if(this.state.activeTab !== tab){
+  onToggle = (tab) => {
+    if (this.state.activeTab !== tab) {
       this.setState({
         activeTab: tab
       });
     }
   }
 
-  filterQuestions(activeTab){
-    switch(activeTab) {
+  filterQuestions(activeTab) {
+    switch (activeTab) {
       case "unanswered":
         return this.getUnansweredQuestions();
       case "answered":
@@ -35,38 +35,38 @@ class QuestionList extends Component{
     }
   }
 
-  getAnsweredQuestions(){
-    const {authedUser, users, questions} = this.props;
+  getAnsweredQuestions() {
+    const { authedUser, users, questions } = this.props;
     let userData = users[authedUser];
-    if(!userData) return [];
-    return Object.keys(userData.answers).sort((a,b)=>questions[b].timestamp - questions[a].timestamp);
+    if (!userData) return [];
+    return Object.keys(userData.answers).sort((a, b) => questions[b].timestamp - questions[a].timestamp);
   }
 
-  getUnansweredQuestions(){
-    const {authedUser, users, questions} = this.props;
+  getUnansweredQuestions() {
+    const { authedUser, users, questions } = this.props;
     let userData = users[authedUser];
-    if(!userData) return [];
-    const unansweredQuestions = Object.keys(questions).filter(item=>!userData.answers.hasOwnProperty(item));
-    return unansweredQuestions.sort((a,b)=>questions[b].timestamp - questions[a].timestamp);
+    if (!userData) return [];
+    const unansweredQuestions = Object.keys(questions).filter(item => !userData.answers.hasOwnProperty(item));
+    return unansweredQuestions.sort((a, b) => questions[b].timestamp - questions[a].timestamp);
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div className="container">
         <div className="questions">
           <Nav tabs className="questionsTabs">
             <NavItem>
               <NavLink
-                className ={this.state.activeTab==="unanswered" ? "active" : ""}
-                onClick={()=>this.onToggle("unanswered")}
+                className={this.state.activeTab === "unanswered" ? "active" : ""}
+                onClick={() => this.onToggle("unanswered")}
               >
                 <h4>Unanswered Questions</h4>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
-                className = {this.state.activeTab==="answered" ? "active" : ""}
-                onClick={()=>this.onToggle("answered")}
+                className={this.state.activeTab === "answered" ? "active" : ""}
+                onClick={() => this.onToggle("answered")}
               >
                 <h4>Answered Questions</h4>
               </NavLink>
@@ -74,16 +74,16 @@ class QuestionList extends Component{
           </Nav>
           <TabContent className="questionsContent" activeTab={this.state.activeTab}>
             <TabPane tabId={"unanswered"}>
-              {this.filterQuestions("unanswered").map(id=>(
+              {this.filterQuestions("unanswered").map(id => (
                 <div key={id}>
-                  <Question id={id}/>
+                  <Question id={id} />
                 </div>
               ))}
             </TabPane>
             <TabPane tabId={"answered"}>
-              {this.filterQuestions("answered").map(id=>(
+              {this.filterQuestions("answered").map(id => (
                 <div key={id}>
-                  <Question id={id}/>
+                  <Question id={id} />
                 </div>
               ))}
             </TabPane>
@@ -94,9 +94,9 @@ class QuestionList extends Component{
   }
 }
 
-function mapStateToProps({authedUser, users, questions}, props){
-  if(authedUser === null) props.history.push("/");
-  return{
+function mapStateToProps({ authedUser, users, questions }, props) {
+  if (authedUser === null) props.history.push("/");
+  return {
     authedUser,
     users,
     questions

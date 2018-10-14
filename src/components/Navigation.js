@@ -32,37 +32,37 @@ class Navigation extends Component {
     const { users, loggedIn, authedUser } = this.props;
     return (
       <div className="navigation">
-          <ButtonToolbar className="toolbar">
-              <ButtonGroup>
-                <Button
-                  size="lg"
-                  onClick={() => { this.onNavigate("/") }}>
-                  Home
+        <ButtonToolbar className="toolbar">
+          <ButtonGroup>
+            <Button
+              size="lg"
+              onClick={() => { this.onNavigate("/") }}>
+              Home
                 </Button>
-                <Button
-                  size="lg"
-                  onClick={() => { this.onNavigate("/add") }}>
-                  New Question
+            <Button
+              size="lg"
+              onClick={() => { this.onNavigate("/add") }}>
+              New Question
                 </Button>
-                <Button
-                  size="lg"
-                  onClick={() => { this.onNavigate("/leaderboard") }}>
-                  Leaderboard
+            <Button
+              size="lg"
+              onClick={() => { this.onNavigate("/leaderboard") }}>
+              Leaderboard
                 </Button>
-              </ButtonGroup>
-            {loggedIn &&
-              (<ButtonGroup style={{marginLeft:"auto"}}>
-                  <Button size="lg" outline color="secondary">
-                    <img
-                      className='avatar'
-                      src={users[authedUser].avatarURL}
-                      alt="Avatar" />
-                      <span>{users[authedUser].name}</span>
-                  </Button>
-                  <Button size="lg" onClick={this.onLogout}>Logout</Button>
-              </ButtonGroup>)
-            }
-          </ButtonToolbar>
+          </ButtonGroup>
+          {loggedIn &&
+            (<ButtonGroup style={{ marginLeft: "auto" }}>
+              <Button size="lg" outline color="secondary">
+                <img
+                  className='avatar'
+                  src={users[authedUser].avatarURL}
+                  alt="Avatar" />
+                <span>{users[authedUser].name}</span>
+              </Button>
+              <Button size="lg" onClick={this.onLogout}>Logout</Button>
+            </ButtonGroup>)
+          }
+        </ButtonToolbar>
       </div>
     )
   }

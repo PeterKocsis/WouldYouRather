@@ -4,23 +4,23 @@ export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const ADD_ANSWER = 'ADD_ANSWER';
 export const ADD_QUESTION_TO_USER = 'ADD_QUESTION_TO_USER';
 
-export function receiveUsers(users){
-  return{
+export function receiveUsers(users) {
+  return {
     type: RECEIVE_USERS,
     users
   }
 }
 
-export function handleReceiveUsers(){
-  return (dispatch)=>{
+export function handleReceiveUsers() {
+  return (dispatch) => {
     return _getUsers()
-      .then((users)=>{
+      .then((users) => {
         dispatch(receiveUsers(users))
       })
   }
 }
 
-export function handleAddAnswer(userId, quiestionId, answer){
+export function handleAddAnswer(userId, quiestionId, answer) {
   return {
     type: ADD_ANSWER,
     userId,

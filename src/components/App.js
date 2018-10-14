@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Login from './Login';
 import QuestionList from './QuestionList';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import QuestionPage from './QuestionPage';
 import CreateQuestion from './CreateQuestion';
 import LeaderBoard from './LeaderBoard';
@@ -12,35 +12,35 @@ import { setViewMode } from '../actions/viewMode';
 import { handleReceiveQuestions } from './../actions/questions';
 
 class App extends Component {
-  componentDidMount(){
+  componentDidMount() {
     this.props.dispatch(handleReceiveUsers());
     this.props.dispatch(handleReceiveQuestions());
     this.props.dispatch(setViewMode('compact'));
   }
 
   render() {
-    const {loggedin} = this.props;
-    const component = loggedin ? (<QuestionList/>) : (<Login/>);
+    const { loggedin } = this.props;
+    const component = loggedin ? (<QuestionList />) : (<Login />);
     return (
       <Router>
-          <div className="App">
-            <Navigation></Navigation>
-            <div className='container'>
-              <Route exact path="/" render={()=>component}></Route>
-              <Route path="/questions/:id" component={QuestionPage}/>
-              <Route path="/add" component={CreateQuestion}/>
-              <Route path="/leaderboard" component={LeaderBoard}/>
-            </div>
+        <div className="App">
+          <Navigation></Navigation>
+          <div className='container'>
+            <Route exact path="/" render={() => component}></Route>
+            <Route path="/questions/:id" component={QuestionPage} />
+            <Route path="/add" component={CreateQuestion} />
+            <Route path="/leaderboard" component={LeaderBoard} />
           </div>
+        </div>
       </Router>
     );
   }
 }
 
-function mapStateToProps ({ viewMode, authedUser }) {
+function mapStateToProps({ viewMode, authedUser }) {
   return {
     loading: viewMode === null,
-    loggedin: authedUser!==null
+    loggedin: authedUser !== null
   }
 }
 

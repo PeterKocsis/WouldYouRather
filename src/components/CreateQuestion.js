@@ -1,19 +1,19 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Form, Card, CardHeader, CardBody, CardTitle, FormGroup, Label,Input, Button, Row, Col} from 'reactstrap';
+import { Form, Card, CardHeader, CardBody, CardTitle, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap';
 import { handleSaveQuestion } from './../actions/questions';
 import { withRouter, Redirect } from 'react-router-dom';
 
 class CreateQuestion extends Component {
 
-  state={
+  state = {
     optionOne: '',
     optionTwo: '',
   }
 
-  handleSubmit=(e)=>{
+  handleSubmit = (e) => {
     e.preventDefault();
-    const {dispatch, authedUser} = this.props;
+    const { dispatch, authedUser } = this.props;
     const question = {
       optionOneText: this.state.optionOne,
       optionTwoText: this.state.optionTwo,
@@ -24,17 +24,17 @@ class CreateQuestion extends Component {
     this.props.history.push("/");
   }
 
-  handleOptionChange=(e, optionNumber)=>{
+  handleOptionChange = (e, optionNumber) => {
     e.persist();
-    switch(optionNumber){
+    switch (optionNumber) {
       case 1:
-        this.setState(()=>({
-          optionOne : e.target.value,
+        this.setState(() => ({
+          optionOne: e.target.value,
         }));
         break;
       case 2:
-        this.setState(()=>({
-          optionTwo : e.target.value,
+        this.setState(() => ({
+          optionTwo: e.target.value,
         }));
         break;
       default:
@@ -42,13 +42,13 @@ class CreateQuestion extends Component {
     }
   }
 
-  render(){
-    const {userAvatar, loggedIn} = this.props;
+  render() {
+    const { userAvatar, loggedIn } = this.props;
     return (
       <div className="container">
         <div className="question">
-        {loggedIn
-          ? (<Card>
+          {loggedIn
+            ? (<Card>
               <CardHeader tag="h5">Make your own poll.</CardHeader>
               <CardBody>
                 <Row>
@@ -56,27 +56,27 @@ class CreateQuestion extends Component {
                     <img
                       className="authorAvatar"
                       src={userAvatar}
-                      alt="Author avatar"/>
+                      alt="Author avatar" />
                   </Col>
                   <Col sm="9">
                     <CardTitle tag="h6">Would You Rather?</CardTitle>
-                    <Form onSubmit={(e)=>this.handleSubmit(e)}>
+                    <Form onSubmit={(e) => this.handleSubmit(e)}>
                       <FormGroup>
                         <Label for="optionOneText">First Option</Label>
-                        <Input type="text" name="text" id="optionOneText" value={this.state.optionOne} onChange={(e)=>this.handleOptionChange(e,1)}></Input>
+                        <Input type="text" name="text" id="optionOneText" value={this.state.optionOne} onChange={(e) => this.handleOptionChange(e, 1)}></Input>
                       </FormGroup>
                       <FormGroup>
                         <Label for="optionTwoText">Second Option</Label>
-                        <Input type="text" name="text" id="optionTwoText" value={this.state.optionTwo} onChange={(e)=>this.handleOptionChange(e,2)}></Input>
+                        <Input type="text" name="text" id="optionTwoText" value={this.state.optionTwo} onChange={(e) => this.handleOptionChange(e, 2)}></Input>
                       </FormGroup>
-                    <Button type="submit">Submit</Button>
+                      <Button type="submit">Submit</Button>
                     </Form>
                   </Col>
                 </Row>
               </CardBody>
             </Card>)
-          : <Redirect to="/"/>
-        }
+            : <Redirect to="/" />
+          }
 
         </div>
       </div>
@@ -84,9 +84,9 @@ class CreateQuestion extends Component {
   }
 }
 
-function mapStateToProps({authedUser, users}){
-  const loggedIn = authedUser===null ? false : true;
-  if(!loggedIn){
+function mapStateToProps({ authedUser, users }) {
+  const loggedIn = authedUser === null ? false : true;
+  if (!loggedIn) {
     return {
       loggedIn,
     };

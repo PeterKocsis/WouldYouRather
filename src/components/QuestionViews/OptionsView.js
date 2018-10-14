@@ -1,50 +1,50 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setViewMode } from '../../actions/viewMode';
 import { handleSetAnswer } from './../../actions/questions';
-import { Button} from 'reactstrap';
+import { Button } from 'reactstrap';
 
 class OptionsView extends Component {
 
-  state={
-    selectedOption : 'optionOne'
+  state = {
+    selectedOption: 'optionOne'
   }
 
-  onSelectionChange=(option)=>{
+  onSelectionChange = (option) => {
     console.log(option);
-    this.setState(()=>({
-      selectedOption : option
+    this.setState(() => ({
+      selectedOption: option
     }));
   }
 
-  setAnswer=(e)=>{
+  setAnswer = (e) => {
     e.preventDefault();
-    const {dispatch, authedUser, question} = this.props;
+    const { dispatch, authedUser, question } = this.props;
     dispatch(handleSetAnswer(authedUser, question.id, this.state.selectedOption));
     dispatch(setViewMode('statistics'));
   }
 
 
 
-  render(){
-    const {question} = this.props;
-    return(
+  render() {
+    const { question } = this.props;
+    return (
       <div className="questionContent">
-        <form id='saveAnswerForm' onSubmit={(e)=>this.setAnswer(e)}>
-        <legend>Would You Rather?</legend>
+        <form id='saveAnswerForm' onSubmit={(e) => this.setAnswer(e)}>
+          <legend>Would You Rather?</legend>
           <p><input
             type='radio'
             name='question'
             value='optionOne'
-            onChange={(e)=>this.onSelectionChange(e.target.value)}/>
-              {question.optionOne.text}
+            onChange={(e) => this.onSelectionChange(e.target.value)} />
+            {question.optionOne.text}
           </p>
           <p><input
             type='radio'
             name='question'
             value='optionTwo'
-            onChange={(e)=>this.onSelectionChange(e.target.value)}/>
-              {question.optionTwo.text}
+            onChange={(e) => this.onSelectionChange(e.target.value)} />
+            {question.optionTwo.text}
           </p>
           <Button type='submit'>Submit</Button>
         </form>
@@ -53,7 +53,7 @@ class OptionsView extends Component {
   }
 }
 
-function mapStateToProps({authedUser}, {question}){
+function mapStateToProps({ authedUser }, { question }) {
   return {
     authedUser,
     question
