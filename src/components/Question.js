@@ -18,7 +18,10 @@ class Question extends Component{
             <CardBody>
               <Row>
                 <Col sm="3">
-                  <img className="authorAvatar" src={authorAvatar}/>
+                  <img
+                    className="authorAvatar"
+                    src={authorAvatar}
+                    alt={"Author avatar"}/>
                 </Col>
                 <Col sm ="9">
                   {viewMode.viewMode === 'compact'

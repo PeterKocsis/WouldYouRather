@@ -18,7 +18,8 @@ class OptionsView extends Component {
     }));
   }
 
-  setAnswer=()=>{
+  setAnswer=(e)=>{
+    e.preventDefault();
     const {dispatch, authedUser, question} = this.props;
     dispatch(handleSetViewMode('statistics'));
     dispatch(handleSetAnswer(authedUser, question.id, this.state.selectedOption));
@@ -31,7 +32,7 @@ class OptionsView extends Component {
     const {question} = this.props;
     return(
       <div className="questionContent">
-        <form onSubmit={this.setAnswer}>
+        <form id='saveAnswerForm' onSubmit={(e)=>this.setAnswer(e)}>
         <legend>Would You Rather?</legend>
           <p><input
             type='radio'

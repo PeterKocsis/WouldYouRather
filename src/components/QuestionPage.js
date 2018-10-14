@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Question from './Question';
-import Navigation from './Navigation';
 
 class QuestionPage extends Component {
   render(){

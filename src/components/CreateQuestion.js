@@ -12,7 +12,8 @@ class CreateQuestion extends Component {
     optionTwo: '',
   }
 
-  handleSubmit=()=>{
+  handleSubmit=(e)=>{
+    e.preventDefault();
     const {dispatch, authedUser} = this.props;
     const question = {
       optionOneText: this.state.optionOne,
@@ -54,11 +55,14 @@ class CreateQuestion extends Component {
               <CardBody>
                 <Row>
                   <Col sm="3">
-                    <img className="authorAvatar" src={userAvatar}/>
+                    <img
+                      className="authorAvatar"
+                      src={userAvatar}
+                      alt="Author avatar"/>
                   </Col>
                   <Col sm="9">
                     <CardTitle tag="h4">Would You Rather?</CardTitle>
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form onSubmit={(e)=>this.handleSubmit(e)}>
                       <FormGroup>
                         <Label for="optionOneText">First Option</Label>
                         <Input type="text" name="text" id="optionOneText" value={this.state.optionOne} onChange={(e)=>this.handleOptionChange(e,1)}></Input>

@@ -2,16 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { logoutUser } from '../actions/authedUser';
-import { ButtonGroup, Button, ButtonToolbar, Badge } from 'reactstrap'
+import { ButtonGroup, Button, ButtonToolbar } from 'reactstrap'
 
 class Navigation extends Component {
-
-  constructor(props) {
-    super(props);
-    // this.state = {
-    //   activeButton: "Home"
-    // }
-  }
 
   onLogout = () => {
     const { dispatch } = this.props;
@@ -19,9 +12,6 @@ class Navigation extends Component {
   }
 
   onNavigate = (path) => {
-    // this.setState({
-    //   activeButton: this.onNavigationChange(path)
-    // });
     this.props.history.push(path);
   }
 
@@ -46,19 +36,16 @@ class Navigation extends Component {
               <ButtonGroup>
                 <Button
                   size="lg"
-                  //className={this.state.activeButton === "Home" ? "active" : ""}
                   onClick={() => { this.onNavigate("/") }}>
                   Home
                 </Button>
                 <Button
                   size="lg"
-                  //className={this.state.activeButton === "CreateQuestion" ? "active" : ""}
                   onClick={() => { this.onNavigate("/add") }}>
                   New Question
                 </Button>
                 <Button
                   size="lg"
-                  //className={this.state.activeButton === "Leaderboard" ? "active" : ""}
                   onClick={() => { this.onNavigate("/leaderboard") }}>
                   Leaderboard
                 </Button>
