@@ -36,17 +36,18 @@ class QuestionList extends Component{
   }
 
   getAnsweredQuestions(){
-    const {authedUser, users} = this.props;
+    const {authedUser, users, questions} = this.props;
     let userData = users[authedUser];
     if(!userData) return [];
-    return Object.keys(userData.answers);
+    return Object.keys(userData.answers).sort((a,b)=>questions[b].timestamp - questions[a].timestamp);
   }
 
   getUnansweredQuestions(){
     const {authedUser, users, questions} = this.props;
     let userData = users[authedUser];
     if(!userData) return [];
-    return Object.keys(questions).filter(item=>!userData.answers.hasOwnProperty(item));
+    const unansweredQuestions = Object.keys(questions).filter(item=>!userData.answers.hasOwnProperty(item));
+    return unansweredQuestions.sort((a,b)=>questions[b].timestamp - questions[a].timestamp);
   }
 
   render(){
