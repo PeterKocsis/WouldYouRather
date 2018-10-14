@@ -1,4 +1,5 @@
 import { _getQuestions, _saveQuestion, _saveQuestionAnswer } from "../utils/_DATA";
+import { handleAddAnswer, handleReceiveUsers } from './users';
 
 export const ADD_QUESTION='ADD_QUESTION';
 export const RECEIVE_QUESTIONS='RECEIVE_QUESTIONS';
@@ -17,6 +18,7 @@ export function handleSaveQuestion(question){
     return _saveQuestion(question)
       .then((formattedQuestion)=>{
         dispatch(addQuestion(formattedQuestion))
+        dispatch(handleReceiveUsers());
       });
   }
 }
@@ -48,13 +50,14 @@ function setAnswer(authedUser, id, option){
 
 export function handleSetAnswer(authedUser, id, option){
   return (dispatch)=>{
+    dispatch(setAnswer(authedUser, id, option));
+    dispatch(handleAddAnswer(authedUser, id, option));
     return _saveQuestionAnswer({
       authedUser,
       qid: id,
       answer: option
     })
       .then(()=>{
-        dispatch(setAnswer(authedUser, id, option));
       });
   }
 }

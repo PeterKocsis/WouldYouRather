@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { handleSetViewMode } from '../../actions/viewMode';
 import { handleSetAnswer } from './../../actions/questions';
-import { handleAddAnswer } from '../../actions/users';
 import { Button} from 'reactstrap';
 
 class OptionsView extends Component {
@@ -21,9 +20,8 @@ class OptionsView extends Component {
   setAnswer=(e)=>{
     e.preventDefault();
     const {dispatch, authedUser, question} = this.props;
-    dispatch(handleSetViewMode('statistics'));
     dispatch(handleSetAnswer(authedUser, question.id, this.state.selectedOption));
-    dispatch(handleAddAnswer(authedUser, question.id, this.state.selectedOption));
+    dispatch(handleSetViewMode('statistics'));
   }
 
 

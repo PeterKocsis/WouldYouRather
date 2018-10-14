@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import {Form, Card, CardHeader, CardBody, CardTitle, FormGroup, Label,Input, Button, Row, Col} from 'reactstrap';
 import { handleSaveQuestion } from './../actions/questions';
 import { withRouter, Redirect } from 'react-router-dom';
-import { handleReceiveUsers } from './../actions/users';
 
 class CreateQuestion extends Component {
 
@@ -22,7 +21,6 @@ class CreateQuestion extends Component {
     }
 
     dispatch(handleSaveQuestion(question));
-    dispatch(handleReceiveUsers());
     this.props.history.push("/");
   }
 
