@@ -51,7 +51,7 @@ class CreateQuestion extends Component {
         <div className="question">
         {loggedIn
           ? (<Card>
-              <CardHeader tag="h3">Make your own poll.</CardHeader>
+              <CardHeader tag="h5">Make your own poll.</CardHeader>
               <CardBody>
                 <Row>
                   <Col sm="3">
@@ -61,7 +61,7 @@ class CreateQuestion extends Component {
                       alt="Author avatar"/>
                   </Col>
                   <Col sm="9">
-                    <CardTitle tag="h4">Would You Rather?</CardTitle>
+                    <CardTitle tag="h6">Would You Rather?</CardTitle>
                     <Form onSubmit={(e)=>this.handleSubmit(e)}>
                       <FormGroup>
                         <Label for="optionOneText">First Option</Label>

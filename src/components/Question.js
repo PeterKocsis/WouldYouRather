@@ -14,7 +14,7 @@ class Question extends Component{
         {loggedIn
         ? (
           <Card className='question'>
-            <CardHeader tag = "h3">{viewMode.viewMode === "statistics" ? `Asked by ${authorName}` : `${authorName} asks:`}</CardHeader>
+            <CardHeader tag = "h5">{viewMode.viewMode === "statistics" ? `Asked by ${authorName}` : `${authorName} asks:`}</CardHeader>
             <CardBody>
               <Row>
                 <Col sm="3">
