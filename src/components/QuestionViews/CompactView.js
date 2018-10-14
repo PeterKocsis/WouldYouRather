@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import { handleSetViewMode } from '../../actions/viewMode';
+import { setViewMode } from '../../actions/viewMode';
 import {Button} from 'reactstrap';
 
 class CompactView extends Component {
@@ -9,11 +9,11 @@ class CompactView extends Component {
   handleViewPoll=()=>{
     const {qustionAnswered, dispatch, question} = this.props;
     if(qustionAnswered){
-      dispatch(handleSetViewMode('statistics'));
+      dispatch(setViewMode('statistics'));
       this.props.history.push(`/questions/${question.id}`);
     }
     else{
-      dispatch(handleSetViewMode('options'));
+      dispatch(setViewMode('options'));
       this.props.history.push(`/questions/${question.id}`);
     }
   }

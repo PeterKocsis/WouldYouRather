@@ -14,7 +14,7 @@ class Question extends Component{
         {loggedIn
         ? (
           <Card className='question'>
-            <CardHeader tag = "h5">{viewMode.viewMode === "statistics" ? `Asked by ${authorName}` : `${authorName} asks:`}</CardHeader>
+            <CardHeader tag = "h5">{viewMode === "statistics" ? `Asked by ${authorName}` : `${authorName} asks:`}</CardHeader>
             <CardBody>
               <Row>
                 <Col sm="3">
@@ -24,9 +24,9 @@ class Question extends Component{
                     alt={"Author avatar"}/>
                 </Col>
                 <Col sm ="9">
-                  {viewMode.viewMode === 'compact'
+                  {viewMode === 'compact'
                     ? (<CompactView question={question}/>)
-                    : viewMode.viewMode==='options'
+                    : viewMode==='options'
                       ? (<OptionsView question={question}/>)
                       : (<StatisticsView question={question}/>)}
                 </Col>

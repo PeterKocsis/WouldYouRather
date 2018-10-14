@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import Question from './Question';
-import { handleSetViewMode } from '../actions/viewMode';
+import { setViewMode } from '../actions/viewMode';
 import { TabContent, TabPane, Nav, NavItem, NavLink} from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ class QuestionList extends Component{
       activeTab: "unanswered",
       filteredQuestions : this.filterQuestions("unanswered")
     }
-    this.props.dispatch(handleSetViewMode('compact'));
+    this.props.dispatch(setViewMode('compact'));
   }
 
   onToggle=(tab)=>{

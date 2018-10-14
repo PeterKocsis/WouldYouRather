@@ -23,7 +23,7 @@ export function handleSaveQuestion(question){
   }
 }
 
-function receiveQuestions(questions){
+export function receiveQuestions(questions){
   return{
     type:RECEIVE_QUESTIONS,
     questions
