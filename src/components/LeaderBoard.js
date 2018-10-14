@@ -1,31 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import UserProfile from './UserProfile';
 
 class LeaderBoard extends Component {
   render(){
-    const {loggedIn} = this.props;
+    const {loggedIn, orderedUsersList} = this.props;
     return (
       <div>
         {loggedIn
-          ? (<p>LeaderBoard</p>)
+          ? (<div className="question">
+              {orderedUsersList.map((item)=>(
+                <UserProfile key={item.userId} userData={item}/>
+              ))}
+            </div>)
           : (<Redirect to="/"/>)}
       </div>
     )
   }
 }
 
-function mapStateToProps({users, questions, authedUser}){
+function mapStateToProps({users, authedUser}){
   const loggedIn = authedUser===null ? false : true;
-  if(loggedIn) {
+  const userWithScore = Object.keys(users).map(userId=>{
+    const voteNumber = Object.keys(users[userId].answers).length;
+    const questionNumber = users[userId].questions.length;
+    const finalScore =  voteNumber + questionNumber;
+    return {
+      userId,
+      voteNumber,
+      questionNumber,
+      finalScore
+    }
+  });
+  const orderedUsersList = userWithScore.sort((a,b)=>b.finalScore - a.finalScore);
+  if(!loggedIn) {
     return {
       loggedIn
     }
   }
   return {
-    users,
-    questions,
-    authedUser,
+    orderedUsersList,
     loggedIn
   }
 }
