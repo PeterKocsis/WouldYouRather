@@ -7,11 +7,11 @@ import { Button } from 'reactstrap';
 class OptionsView extends Component {
 
   state = {
-    selectedOption: 'optionOne'
+    selectedOption: 'None'
   }
 
   onSelectionChange = (option) => {
-    console.log(option);
+    console.log(this.state.selectedOption);
     this.setState(() => ({
       selectedOption: option
     }));
@@ -46,7 +46,7 @@ class OptionsView extends Component {
             onChange={(e) => this.onSelectionChange(e.target.value)} />
             {question.optionTwo.text}
           </p>
-          <Button type='submit'>Submit</Button>
+          <Button disabled={this.state.selectedOption === 'None'} type='submit'>Submit</Button>
         </form>
       </div>
     )
