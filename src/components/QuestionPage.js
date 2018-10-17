@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Question from './Question';
+import { Redirect } from 'react-router-dom';
 
 class QuestionPage extends Component {
   render() {
-    const { id } = this.props;
+    const { id, redirect, from } = this.props;
     return (
       <div className="container">
         <div className="questions">
-          <Question id={id} />
+          {redirect
+            ? <Redirect  to={{pathname:"/NoContent", state:from}}/>
+            : <Question id={id} />}
         </div>
       </div>
     )
@@ -17,9 +20,13 @@ class QuestionPage extends Component {
 
 function mapStateToProps({ questions }, props) {
   const { id } = props.match.params;
+  const requestedUrl = props.location.pathname;
+  const redirect = (!questions[id]) ? true : false;
   return {
-    id
-  }
+    id,
+    redirect,
+    from: requestedUrl,
+  };
 }
 
 export default connect(mapStateToProps)(QuestionPage);

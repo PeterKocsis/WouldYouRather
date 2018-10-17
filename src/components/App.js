@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Login from './Login';
 import QuestionList from './QuestionList';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import QuestionPage from './QuestionPage';
 import CreateQuestion from './CreateQuestion';
 import LeaderBoard from './LeaderBoard';
@@ -10,6 +10,7 @@ import Navigation from './Navigation';
 import { handleReceiveUsers } from './../actions/users';
 import { setViewMode } from '../actions/viewMode';
 import { handleReceiveQuestions } from './../actions/questions';
+import ContentUnavailable from './ContentUnavailable';
 
 class App extends Component {
   componentDidMount() {
@@ -26,10 +27,13 @@ class App extends Component {
         <div className="App">
           <Navigation></Navigation>
           <div className='container'>
-            <Route exact path="/" render={() => component}></Route>
-            <Route path="/questions/:id" component={QuestionPage} />
-            <Route path="/add" component={CreateQuestion} />
-            <Route path="/leaderboard" component={LeaderBoard} />
+            <Switch>
+              <Route exact path="/" render={() => component}></Route>
+              <Route path="/questions/:id" component={QuestionPage} />
+              <Route path="/add" component={CreateQuestion} />
+              <Route path="/leaderboard" component={LeaderBoard} />
+              <Route component={ContentUnavailable}/>
+            </Switch>
           </div>
         </div>
       </Router>
