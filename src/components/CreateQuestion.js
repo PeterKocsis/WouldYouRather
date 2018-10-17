@@ -69,7 +69,9 @@ class CreateQuestion extends Component {
                         <Label for="optionTwoText">Second Option</Label>
                         <Input type="text" name="text" id="optionTwoText" value={this.state.optionTwo} onChange={(e) => this.handleOptionChange(e, 2)}></Input>
                       </FormGroup>
-                      <Button type="submit">Submit</Button>
+                      <Button
+                        disabled={this.state.optionOne.trim().length === 0 || this.state.optionTwo.trim().length === 0}
+                        type="submit">Submit</Button>
                     </Form>
                   </Col>
                 </Row>
