@@ -13,7 +13,7 @@ const LeaderBoard = (props) => {
             <UserProfile key={item.userId} userData={item} />
           ))}
         </div>)
-        : (<Redirect to="/" />)}
+        : (<Redirect to={{pathname:"/", state:"/leaderboard" }}/>)}
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Login from './Login';
 import QuestionList from './QuestionList';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import QuestionPage from './QuestionPage';
 import CreateQuestion from './CreateQuestion';
 import LeaderBoard from './LeaderBoard';
@@ -20,33 +20,37 @@ class App extends Component {
   }
 
   render() {
-    const { loggedin } = this.props;
-    const component = loggedin ? (<QuestionList />) : (<Login />);
+    const { loggedin, redirectUrl } = this.props;
+    const component = loggedin
+                        ? redirectUrl && redirectUrl!=="/"
+                          ? (<Redirect to={redirectUrl}/>)
+                          : (<QuestionList/>)
+                        : (<Login />);
     return (
-      <Router>
-        <div className="App">
-          <Navigation></Navigation>
-          <div className='container'>
-            <Switch>
-              <Route exact path="/" render={() => component}></Route>
-              <Route path="/questions/:id" component={QuestionPage} />
-              <Route path="/add" component={CreateQuestion} />
-              <Route path="/leaderboard" component={LeaderBoard} />
-              <Route component={ContentUnavailable}/>
-            </Switch>
-          </div>
+      <div className="App">
+        <Navigation></Navigation>
+        <div className='container'>
+          <Switch>
+            <Route exact path="/" render={() => component}></Route>
+            <Route exact path="/questions/:id" component={QuestionPage} />
+            <Route path="/add" component={CreateQuestion} />
+            <Route path="/leaderboard" component={LeaderBoard} />
+            <Route component={ContentUnavailable} />
+          </Switch>
         </div>
-      </Router>
+      </div>
     );
   }
 }
 
-function mapStateToProps({ viewMode, authedUser }) {
+function mapStateToProps({ viewMode, authedUser }, { location }) {
+  const redirectUrl = location.state;
   return {
     loading: viewMode === null,
-    loggedin: authedUser !== null
+    loggedin: authedUser !== null,
+    redirectUrl
   }
 }
 
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));

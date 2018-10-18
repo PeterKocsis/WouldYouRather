@@ -7,12 +7,15 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import middleware from './middleware'
 import 'bootstrap/dist/css/bootstrap.css';
+import { BrowserRouter as Router} from 'react-router-dom';
 
 const store = createStore(reducer, middleware)
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </Provider>,
   document.getElementById('root')
 )

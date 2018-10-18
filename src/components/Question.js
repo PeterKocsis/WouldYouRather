@@ -32,7 +32,7 @@ const Question = (props) => {
               </Row>
             </CardBody>
           </Card>)
-        : <Redirect to="/" />}
+        : <Redirect to={{pathname:"/", state: props.location.pathname}} />}
     </div>
   )
 }

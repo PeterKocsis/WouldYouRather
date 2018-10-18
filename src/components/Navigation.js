@@ -7,8 +7,9 @@ import { ButtonGroup, Button, ButtonToolbar } from 'reactstrap'
 class Navigation extends Component {
 
   onLogout = () => {
-    const { dispatch } = this.props;
+    const { dispatch, history } = this.props;
     dispatch(logoutUser());
+    history.push("/");
   }
 
   onNavigate = (path) => {

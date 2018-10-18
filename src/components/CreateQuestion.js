@@ -77,7 +77,7 @@ class CreateQuestion extends Component {
                 </Row>
               </CardBody>
             </Card>)
-            : <Redirect to="/" />
+            : <Redirect to={{pathname:"/", state: "/add"}} />
           }
 
         </div>
@@ -86,7 +86,7 @@ class CreateQuestion extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users }) {
+function mapStateToProps({ authedUser, users }, props) {
   const loggedIn = authedUser === null ? false : true;
   if (!loggedIn) {
     return {
