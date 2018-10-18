@@ -1,23 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import UserProfile from './UserProfile';
 
-class LeaderBoard extends Component {
-  render() {
-    const { loggedIn, orderedUsersList } = this.props;
-    return (
-      <div>
-        {loggedIn
-          ? (<div className="question">
-            {orderedUsersList.map((item) => (
-              <UserProfile key={item.userId} userData={item} />
-            ))}
-          </div>)
-          : (<Redirect to="/" />)}
-      </div>
-    )
-  }
+const LeaderBoard = (props) => {
+  const { loggedIn, orderedUsersList } = props;
+  return (
+    <div>
+      {loggedIn
+        ? (<div className="question">
+          {orderedUsersList.map((item) => (
+            <UserProfile key={item.userId} userData={item} />
+          ))}
+        </div>)
+        : (<Redirect to="/" />)}
+    </div>
+  )
 }
 
 function mapStateToProps({ users, authedUser }) {
