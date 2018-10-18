@@ -7,13 +7,16 @@ import { withRouter } from 'react-router-dom';
 
 class QuestionList extends Component {
 
+  componentDidMount(){
+    this.props.dispatch(setViewMode('compact'));
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       activeTab: "unanswered",
       filteredQuestions: this.filterQuestions("unanswered")
     }
-    this.props.dispatch(setViewMode('compact'));
   }
 
   onToggle = (tab) => {
